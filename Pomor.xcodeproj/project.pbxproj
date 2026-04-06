@@ -21,33 +21,9 @@
 		DF9B1B642F79E6ED00008936 /* PomorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		DF9B1B8B2F7A19E600008936 /* Exceptions for "Pomor" folder in "Pomor" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				readme.md,
-			);
-			target = DF9B1ADD2F79902100008936 /* Pomor */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		DF9B1B8C2F7A19E600008936 /* Exceptions for "Pomor" folder in "Compile Sources" phase from "Pomor" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = DF9B1ADA2F79902100008936 /* Sources */;
-			membershipExceptions = (
-				readme.md,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DF9B1AE02F79902100008936 /* Pomor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				DF9B1B8B2F7A19E600008936 /* Exceptions for "Pomor" folder in "Pomor" target */,
-				DF9B1B8C2F7A19E600008936 /* Exceptions for "Pomor" folder in "Compile Sources" phase from "Pomor" target */,
-			);
 			path = Pomor;
 			sourceTree = "<group>";
 		};
