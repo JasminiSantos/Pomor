@@ -1,87 +1,77 @@
-import XCTest
+import Testing
+import Foundation
 @testable import Pomor
 
 @MainActor
-final class TaskListViewModelTests: XCTestCase {
-    
-    var viewModel: TaskListViewModel!
-    var repository: MockTaskRepository!
-    
-    override func setUp() {
-        super.setUp()
-        
+struct TaskListViewModelTests {
+
+    let repository: MockTaskRepository
+    let sut: TaskListViewModel
+
+    init() {
         repository = MockTaskRepository()
-        
-        let get = GetTasksUseCase(repository: repository)
-        let delete = DeleteTaskUseCase(repository: repository)
-        
-        viewModel = TaskListViewModel(
-            getTasksUseCase: get,
-            deleteTaskUseCase: delete
+        sut = TaskListViewModel(
+            getTasksUseCase: GetTasksUseCase(repository: repository),
+            deleteTaskUseCase: DeleteTaskUseCase(repository: repository)
         )
     }
-    
-    override func tearDown() {
-        viewModel = nil
-        repository = nil
-        super.tearDown()
-    }
-    
-    func test_loadTasks_success() {
+
+    // MARK: - Load Tasks
+
+    @Test func loadTasks_success() {
         let task = Task(id: UUID(), title: "Study", duration: 25, icon: "book")
         repository.tasks = [task]
-        
-        viewModel.loadTasks()
-        
-        XCTAssertEqual(viewModel.tasks.count, 1)
-        XCTAssertEqual(viewModel.tasks.first?.title, "Study")
+
+        sut.loadTasks()
+
+        #expect(sut.tasks.count == 1)
+        #expect(sut.tasks.first?.title == "Study")
     }
-    
-    func test_loadTasks_empty() {
+
+    @Test func loadTasks_empty() {
         repository.tasks = []
-        
-        viewModel.loadTasks()
-        
-        XCTAssertTrue(viewModel.tasks.isEmpty)
+
+        sut.loadTasks()
+
+        #expect(sut.tasks.isEmpty)
     }
-    
-    func test_loadTasks_failure_setsErrorState() {
+
+    @Test func loadTasks_failure_setsErrorState() {
         repository.errorToReturn = FakeError()
-        
-        viewModel.loadTasks()
-        
-        XCTAssertTrue(viewModel.tasks.isEmpty)
-        XCTAssertTrue(viewModel.showError)
-        XCTAssertNotNil(viewModel.errorMessage)
+
+        sut.loadTasks()
+
+        #expect(sut.tasks.isEmpty)
+        #expect(sut.showError)
+        #expect(sut.errorMessage != nil)
     }
-    
-    func test_deleteTask_success_removesTask() {
+
+    // MARK: - Delete Task
+
+    @Test func deleteTask_success_removesTask() {
         let task = Task(id: UUID(), title: "Test", duration: 25, icon: "book")
-        
         repository.tasks = [task]
-        viewModel.loadTasks()
-        
-        viewModel.selectedTask = task
-        viewModel.deleteTask()
-        
-        XCTAssertTrue(viewModel.tasks.isEmpty)
+        sut.loadTasks()
+
+        sut.selectedTask = task
+        sut.deleteTask()
+
+        #expect(sut.tasks.isEmpty)
     }
-    
-    func test_deleteTask_failure_keepsTaskAndShowsError() {
+
+    @Test func deleteTask_failure_keepsTaskAndShowsError() {
         let task = Task(id: UUID(), title: "Test", duration: 25, icon: "book")
-        
         repository.tasks = [task]
-        viewModel.loadTasks()
-        
-        viewModel.selectedTask = task
+        sut.loadTasks()
+
+        sut.selectedTask = task
         repository.errorToReturn = FakeError()
-        
-        viewModel.deleteTask()
-        
-        XCTAssertEqual(viewModel.tasks.count, 1)
-        XCTAssertEqual(viewModel.tasks.first?.id, task.id)
-        
-        XCTAssertTrue(viewModel.showError)
-        XCTAssertNotNil(viewModel.errorMessage)
+
+        sut.deleteTask()
+
+        #expect(sut.tasks.count == 1)
+        #expect(sut.tasks.first?.id == task.id)
+        #expect(sut.showError)
+        #expect(sut.errorMessage != nil)
     }
 }

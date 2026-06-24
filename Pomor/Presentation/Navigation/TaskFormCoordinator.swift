@@ -1,6 +1,6 @@
 import SwiftUI
 
-final class TaskFormCoordinator: Coordinator {
+final class TaskFormCoordinator {
     
     private let mode: TaskFormMode
     private let resolver: DIContainer
@@ -10,12 +10,8 @@ final class TaskFormCoordinator: Coordinator {
         self.resolver = resolver
     }
     
-    func start() -> AnyView {
-        
+    func start() -> TaskFormView {
         let viewModel = resolver.resolve(TaskFormViewModel.self, arg: mode)
-        
-        return AnyView(
-            TaskFormView(viewModel: viewModel)
-        )
+        return TaskFormView(viewModel: viewModel)
     }
 }

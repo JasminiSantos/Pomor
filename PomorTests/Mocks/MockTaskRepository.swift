@@ -4,10 +4,15 @@ import Foundation
 final class MockTaskRepository: TaskRepository {
     
     var tasks: [Task] = []
-    
     var errorToReturn: Error?
     
+    private(set) var getTasksCallCount = 0
+    private(set) var addTaskCallCount = 0
+    private(set) var deleteTaskCallCount = 0
+    private(set) var updateTaskCallCount = 0
+    
     func getTasks() -> Result<[Task], Error> {
+        getTasksCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
         }
@@ -15,6 +20,7 @@ final class MockTaskRepository: TaskRepository {
     }
     
     func addTask(_ task: Task) -> Result<Void, Error> {
+        addTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
         }
@@ -23,6 +29,7 @@ final class MockTaskRepository: TaskRepository {
     }
     
     func deleteTask(_ task: Task) -> Result<Void, Error> {
+        deleteTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
         }
@@ -31,6 +38,7 @@ final class MockTaskRepository: TaskRepository {
     }
     
     func updateTask(_ task: Task) -> Result<Void, Error> {
+        updateTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
         }

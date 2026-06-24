@@ -1,6 +1,6 @@
 import SwiftUI
 
-final class TimerCoordinator: Coordinator {
+final class TimerCoordinator {
     
     private let task: Task
     private let resolver: DIContainer
@@ -10,12 +10,8 @@ final class TimerCoordinator: Coordinator {
         self.resolver = resolver
     }
     
-    func start() -> AnyView {
-        
+    func start() -> TimerView {
         let viewModel = resolver.resolve(TimerViewModel.self, arg: task)
-        
-        return AnyView(
-            TimerView(viewModel: viewModel)
-        )
+        return TimerView(viewModel: viewModel)
     }
 }

@@ -1,24 +1,24 @@
 import SwiftUI
 
-final class TaskListCoordinator: Coordinator {
+final class TaskListCoordinator {
     
     private let resolver: DIContainer
-    private let appCoordinator: AppCoordinator
     
-    init(resolver: DIContainer, appCoordinator: AppCoordinator) {
+    init(resolver: DIContainer) {
         self.resolver = resolver
-        self.appCoordinator = appCoordinator
     }
     
-    func start() -> AnyView {
-        
+    func start(
+        onTimer: @escaping (Task) -> Void,
+        onAdd: @escaping () -> Void,
+        onEdit: @escaping (Task) -> Void
+    ) -> TaskListView {
         let viewModel = resolver.resolve(TaskListViewModel.self)
-        
-        return AnyView(
-            TaskListView(
-                viewModel: viewModel,
-                coordinator: appCoordinator
-            )
+        return TaskListView(
+            viewModel: viewModel,
+            onTimer: onTimer,
+            onAdd: onAdd,
+            onEdit: onEdit
         )
     }
 }

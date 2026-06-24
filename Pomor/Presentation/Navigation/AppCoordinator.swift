@@ -34,21 +34,15 @@ final class AppCoordinator: ObservableObject {
     func build(_ route: AppRoute) -> some View {
         switch route {
         case .home:
-            TaskListCoordinator(
-                resolver: container,
-                appCoordinator: self
-            ).start()
+            TaskListCoordinator(resolver: container).start(
+                onTimer: goToTimer,
+                onAdd: goToAddTask,
+                onEdit: goToEditTask
+            )
         case .timer(let task):
-            TimerCoordinator(
-                task: task,
-                resolver: container
-            ).start()
-            
+            TimerCoordinator(task: task, resolver: container).start()
         case .form(let mode):
-            TaskFormCoordinator(
-                mode: mode,
-                resolver: container
-            ).start()
+            TaskFormCoordinator(mode: mode, resolver: container).start()
         }
     }
 }

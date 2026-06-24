@@ -1,77 +1,71 @@
-import XCTest
+import Testing
+import Foundation
 @testable import Pomor
 
-final class TimerViewModelTests: XCTestCase {
-    
-    var viewModel: TimerViewModel!
-    
-    override func setUp() {
-        super.setUp()
-        
+struct TimerViewModelTests {
+
+    let sut: TimerViewModel
+
+    init() {
         let task = Task(id: UUID(), title: "Study", duration: 25, icon: "book")
-        viewModel = TimerViewModel(task: task)
-    }
-    
-    override func tearDown() {
-        viewModel = nil
-        super.tearDown()
-    }
-    
-    func test_initialState() {
-        XCTAssertEqual(viewModel.timeRemaining, 1500)
-        XCTAssertFalse(viewModel.isRunning)
-        XCTAssertEqual(viewModel.progress, 0)
-    }
-    
-    func test_start_setsIsRunningTrue() {
-        viewModel.start()
-        
-        XCTAssertTrue(viewModel.isRunning)
-    }
-    
-    func test_stop_setsIsRunningFalse() {
-        viewModel.start()
-        viewModel.stop()
-        
-        XCTAssertFalse(viewModel.isRunning)
-    }
-    
-    func test_toggle_startsWhenStopped() {
-        viewModel.toggle()
-        
-        XCTAssertTrue(viewModel.isRunning)
+        sut = TimerViewModel(task: task)
     }
 
-    func test_toggle_stopsWhenRunning() {
-        viewModel.start()
-        viewModel.toggle()
-        
-        XCTAssertFalse(viewModel.isRunning)
+    @Test func initialState() {
+        #expect(sut.timeRemaining == 1500)
+        #expect(!sut.isRunning)
+        #expect(sut.progress == 0)
     }
-    
-    func test_reset_stopsAndResetsTime() {
-        viewModel.start()
-        viewModel.timeRemaining = 100
-        
-        viewModel.reset()
-        
-        XCTAssertFalse(viewModel.isRunning)
-        XCTAssertEqual(viewModel.timeRemaining, 1500)
+
+    @Test func start_setsIsRunningTrue() {
+        sut.start()
+
+        #expect(sut.isRunning)
     }
-    
-    func test_progress_calculation() {
-        viewModel.timeRemaining = 750
-        
-        XCTAssertEqual(viewModel.progress, 0.5, accuracy: 0.001)
+
+    @Test func stop_setsIsRunningFalse() {
+        sut.start()
+        sut.stop()
+
+        #expect(!sut.isRunning)
     }
-    
-    func test_start_doesNotStartTwice() {
-        viewModel.start()
-        let firstState = viewModel.isRunning
-        
-        viewModel.start()
-        
-        XCTAssertTrue(firstState)
-        XCTAssertTrue(viewModel.isRunning)
+
+    @Test func toggle_startsWhenStopped() {
+        sut.toggle()
+
+        #expect(sut.isRunning)
+    }
+
+    @Test func toggle_stopsWhenRunning() {
+        sut.start()
+        sut.toggle()
+
+        #expect(!sut.isRunning)
+    }
+
+    @Test func reset_stopsAndResetsTime() {
+        sut.start()
+        sut.timeRemaining = 100
+
+        sut.reset()
+
+        #expect(!sut.isRunning)
+        #expect(sut.timeRemaining == 1500)
+    }
+
+    @Test func progress_calculation() {
+        sut.timeRemaining = 750
+
+        #expect(abs(sut.progress - 0.5) <= 0.001)
+    }
+
+    @Test func start_doesNotStartTwice() {
+        sut.start()
+        let firstState = sut.isRunning
+
+        sut.start()
+
+        #expect(firstState)
+        #expect(sut.isRunning)
     }
 }
