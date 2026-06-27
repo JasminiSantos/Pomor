@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DFD733372FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733362FF026BF00531227 /* PomorDI */; };
+		DFD733382FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733392FF026BF00531227 /* PomorDI */; };
 		DFD8354E2FEB72E000C937E3 /* PomorWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8371E2FEDDCD500C937E3 /* PomorCore */; };
 		DFD838372FEE131700C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD838362FEE131700C937E3 /* PomorCore */; };
@@ -72,7 +74,6 @@
 				Data/WatchLocalTaskDataSource.swift,
 				Data/WatchTaskRepositoryImpl.swift,
 				Dependency/WatchDependencyMap.swift,
-				Dependency/WatchDIContainer.swift,
 				Domain/Interfaces/WatchTaskRepository.swift,
 				Domain/UseCases/AddWatchTaskUseCase.swift,
 				Domain/UseCases/DeleteWatchTaskUseCase.swift,
@@ -127,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */,
+				DFD733382FF026BF00531227 /* PomorDI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFD838372FEE131700C937E3 /* PomorCore in Frameworks */,
+				DFD733372FF026BF00531227 /* PomorDI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +221,7 @@
 			name = Pomor;
 			packageProductDependencies = (
 				DFD8371E2FEDDCD500C937E3 /* PomorCore */,
+				DFD733392FF026BF00531227 /* PomorDI */,
 			);
 			productName = Pomor;
 			productReference = DF9B1ADE2F79902100008936 /* Pomor.app */;
@@ -264,6 +268,7 @@
 			name = "PomorWatch Watch App";
 			packageProductDependencies = (
 				DFD838362FEE131700C937E3 /* PomorCore */,
+				DFD733362FF026BF00531227 /* PomorDI */,
 			);
 			productName = "PomorWatch Watch App";
 			productReference = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */;
@@ -356,6 +361,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */,
+				DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF9B1ADF2F79902100008936 /* Products */;
@@ -941,6 +947,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = PomorDI;
+		};
 		DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = PomorCore;
@@ -948,6 +958,16 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DFD733362FF026BF00531227 /* PomorDI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */;
+			productName = PomorDI;
+		};
+		DFD733392FF026BF00531227 /* PomorDI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */;
+			productName = PomorDI;
+		};
 		DFD8371E2FEDDCD500C937E3 /* PomorCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PomorCore;
