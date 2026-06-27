@@ -1,4 +1,4 @@
-import SwiftUI
+import PomorCore
 
 struct DependencyMap {
 
@@ -43,8 +43,17 @@ struct DependencyMap {
             )
         }
 
-        container.register(TimerViewModel.self) { _, task in
-            TimerViewModel(task: task)
+        container.registerSingleton(PomodoroConfiguration.self) { _ in
+            PomodoroConfiguration()
+        }
+
+        container.register(TimerViewModel.self) { r, task in
+            TimerViewModel(
+                task: task,
+                engine: DefaultPomodoroEngine(
+                    config: r.resolve(PomodoroConfiguration.self)
+                )
+            )
         }
     }
 }

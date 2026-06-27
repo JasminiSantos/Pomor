@@ -1,3 +1,4 @@
+import PomorCore
 import Testing
 import Foundation
 @testable import Pomor
@@ -17,7 +18,7 @@ struct TaskFormViewModelTests {
         )
     }
 
-    private func switchToEditMode(task: Task) {
+    private func switchToEditMode(task: PomTask) {
         sut.mode = .edit(task)
     }
 
@@ -29,7 +30,7 @@ struct TaskFormViewModelTests {
     }
 
     @Test func setupInitialData_edit_populatesFields() {
-        let task = Task(id: UUID(), title: "Study", duration: 30, icon: "book")
+        let task = PomTask(id: UUID(), title: "Study", duration: 30, icon: "book")
         switchToEditMode(task: task)
 
         #expect(sut.title == "Study")
@@ -125,7 +126,7 @@ struct TaskFormViewModelTests {
     // MARK: - Save (Edit)
 
     @Test func save_edit_success_updatesTask() {
-        let task = Task(id: UUID(), title: "Old", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Old", duration: 25, icon: "book")
         repository.tasks = [task]
         switchToEditMode(task: task)
 
@@ -142,7 +143,7 @@ struct TaskFormViewModelTests {
     }
 
     @Test func save_edit_failure_showsError() {
-        let task = Task(id: UUID(), title: "Old", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Old", duration: 25, icon: "book")
         switchToEditMode(task: task)
 
         sut.title = "New"

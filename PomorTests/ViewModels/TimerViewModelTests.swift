@@ -1,3 +1,4 @@
+import PomorCore
 import Testing
 import Foundation
 @testable import Pomor
@@ -7,7 +8,7 @@ struct TimerViewModelTests {
     let sut: TimerViewModel
 
     init() {
-        let task = Task(id: UUID(), title: "Study", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Study", duration: 25, icon: "book")
         sut = TimerViewModel(task: task)
     }
 

@@ -1,8 +1,23 @@
+import PomorCore
 import SwiftUI
 
 enum TaskFormMode: Hashable {
     case create
-    case edit(Task)
+    case edit(PomTask)
+
+    var navigationTitle: String {
+        switch self {
+        case .create: return "New Task"
+        case .edit:   return "Edit Task"
+        }
+    }
+
+    var buttonTitle: String {
+        switch self {
+        case .create: return "Create Task"
+        case .edit:   return "Save Changes"
+        }
+    }
 }
 
 struct TaskFormView: View {
@@ -22,7 +37,7 @@ struct TaskFormView: View {
                             .clipShape(Circle())
                     }
                     
-                    Text(viewModel.navigationTitle)
+                    Text(viewModel.mode.navigationTitle)
                         .font(.title2)
                         .fontWeight(.medium)
                     
@@ -30,10 +45,10 @@ struct TaskFormView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Task Title")
+                    Text(TaskFormStrings.Label.taskTitle)
                         .foregroundColor(.gray)
                     
-                    TextField("What do you need to focus on?", text: $viewModel.title)
+                    TextField(TaskFormStrings.Placeholder.taskTitle, text: $viewModel.title)
                         .padding()
                         .frame(height: 55)
                         .background(Color.white)
@@ -41,7 +56,7 @@ struct TaskFormView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Duration (minutes)")
+                    Text(TaskFormStrings.Label.duration)
                         .foregroundColor(.gray)
                     
                     TextField("", text: $viewModel.durationText)
@@ -67,7 +82,7 @@ struct TaskFormView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Select Icon")
+                    Text(TaskFormStrings.Label.icon)
                         .foregroundColor(.gray)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -107,7 +122,7 @@ struct TaskFormView: View {
                 
                 Spacer()
                 
-                PrimaryButton(title: viewModel.buttonTitle) {
+                PrimaryButton(title: viewModel.mode.buttonTitle) {
                     viewModel.save()
                 }
                 .disabled(!viewModel.isValid)

@@ -1,4 +1,5 @@
 import SwiftUI
+import PomorCore
 
 struct TimerView: View {
     
@@ -27,7 +28,7 @@ struct TimerView: View {
                     }
                 }
                 
-                Text("\(Int(viewModel.progress * 100))% complete")
+                Text(TimerStrings.Progress.complete(Int(viewModel.progress * 100)))
                     .foregroundColor(.gray)
                     .padding(.top, 8)
             }

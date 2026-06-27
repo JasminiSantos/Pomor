@@ -1,11 +1,12 @@
+import PomorCore
 import SwiftUI
 
 final class TimerCoordinator {
     
-    private let task: Task
+    private let task: PomTask
     private let resolver: DIContainer
     
-    init(task: Task, resolver: DIContainer) {
+    init(task: PomTask, resolver: DIContainer) {
         self.task = task
         self.resolver = resolver
     }

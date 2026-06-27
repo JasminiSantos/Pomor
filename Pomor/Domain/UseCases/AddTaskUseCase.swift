@@ -1,3 +1,4 @@
+import PomorCore
 import Foundation
 
 class AddTaskUseCase {
@@ -8,7 +9,7 @@ class AddTaskUseCase {
     }
     
     func execute(title: String, duration: Int, icon: String) -> Result<Void, Error> {
-        let task = Task(id: UUID(), title: title, duration: duration, icon: icon)
+        let task = PomTask(id: UUID(), title: title, duration: duration, icon: icon)
         return repository.addTask(task)
     }
 }

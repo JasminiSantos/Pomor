@@ -1,3 +1,4 @@
+import PomorCore
 import SwiftUI
 
 final class TaskListCoordinator {
@@ -9,9 +10,9 @@ final class TaskListCoordinator {
     }
     
     func start(
-        onTimer: @escaping (Task) -> Void,
+        onTimer: @escaping (PomTask) -> Void,
         onAdd: @escaping () -> Void,
-        onEdit: @escaping (Task) -> Void
+        onEdit: @escaping (PomTask) -> Void
     ) -> TaskListView {
         let viewModel = resolver.resolve(TaskListViewModel.self)
         return TaskListView(

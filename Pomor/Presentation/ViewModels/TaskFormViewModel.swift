@@ -1,3 +1,4 @@
+import PomorCore
 import Foundation
 import Combine
 
@@ -32,20 +33,6 @@ final class TaskFormViewModel: ObservableObject {
         self.mode = mode
         self.addTaskUseCase = addTaskUseCase
         self.updateTaskUseCase = updateTaskUseCase
-    }
-    
-    var navigationTitle: String {
-        switch mode {
-        case .create: return "New Task"
-        case .edit: return "Edit Task"
-        }
-    }
-    
-    var buttonTitle: String {
-        switch mode {
-        case .create: return "Create Task"
-        case .edit: return "Save Changes"
-        }
     }
     
     var duration: Int? {
@@ -94,7 +81,7 @@ final class TaskFormViewModel: ObservableObject {
             )
             
         case .edit(let task):
-            let updated = Task(
+            let updated = PomTask(
                 id: task.id,
                 title: title,
                 duration: duration ?? 25,
@@ -126,13 +113,13 @@ final class TaskFormViewModel: ObservableObject {
     
     private func validate() -> Bool {
         if title.trimmingCharacters(in: .whitespaces).isEmpty {
-            errorMessage = "Title is required"
+            errorMessage = TaskFormStrings.Validation.titleRequired
             showError = true
             return false
         }
-        
+
         guard duration != nil else {
-            errorMessage = "Invalid duration"
+            errorMessage = TaskFormStrings.Validation.invalidDuration
             showError = true
             return false
         }

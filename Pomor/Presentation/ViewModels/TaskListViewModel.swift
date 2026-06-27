@@ -1,10 +1,10 @@
-import SwiftUI
-import Combine
+import PomorCore
 import Foundation
+import Combine
 
 class TaskListViewModel: ObservableObject {
-    @Published var tasks: [Task] = []
-    @Published var selectedTask: Task? = nil
+    @Published var tasks: [PomTask] = []
+    @Published var selectedTask: PomTask? = nil
     
     @Published var showMenu = false
     @Published var showDeleteDialog = false
@@ -27,7 +27,7 @@ class TaskListViewModel: ObservableObject {
     
     func loadTasks() {
         let result = getTasksUseCase.execute()
-        
+
         switch result {
         case .success(let fetchedTasks):
             self.tasks = fetchedTasks
@@ -55,7 +55,7 @@ private extension TaskListViewModel {
         if let taskError = error as? TaskError {
             errorMessage = taskError.localizedDescription
         } else {
-            errorMessage = "Something went wrong."
+            errorMessage = TaskListStrings.Error.generic
         }
         
         showError = true

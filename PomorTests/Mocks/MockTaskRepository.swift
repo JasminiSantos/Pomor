@@ -1,9 +1,10 @@
+import PomorCore
 import Foundation
 @testable import Pomor
 
 final class MockTaskRepository: TaskRepository {
     
-    var tasks: [Task] = []
+    var tasks: [PomTask] = []
     var errorToReturn: Error?
     
     private(set) var getTasksCallCount = 0
@@ -11,7 +12,7 @@ final class MockTaskRepository: TaskRepository {
     private(set) var deleteTaskCallCount = 0
     private(set) var updateTaskCallCount = 0
     
-    func getTasks() -> Result<[Task], Error> {
+    func getTasks() -> Result<[PomTask], Error> {
         getTasksCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
@@ -19,7 +20,7 @@ final class MockTaskRepository: TaskRepository {
         return .success(tasks)
     }
     
-    func addTask(_ task: Task) -> Result<Void, Error> {
+    func addTask(_ task: PomTask) -> Result<Void, Error> {
         addTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
@@ -28,7 +29,7 @@ final class MockTaskRepository: TaskRepository {
         return .success(())
     }
     
-    func deleteTask(_ task: Task) -> Result<Void, Error> {
+    func deleteTask(_ task: PomTask) -> Result<Void, Error> {
         deleteTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)
@@ -37,7 +38,7 @@ final class MockTaskRepository: TaskRepository {
         return .success(())
     }
     
-    func updateTask(_ task: Task) -> Result<Void, Error> {
+    func updateTask(_ task: PomTask) -> Result<Void, Error> {
         updateTaskCallCount += 1
         if let error = errorToReturn {
             return .failure(error)

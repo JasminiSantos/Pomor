@@ -1,8 +1,9 @@
+import PomorCore
 import Foundation
 
 protocol TaskRepository {
-    func getTasks() -> Result<[Task], Error>
-    func addTask(_ task: Task) -> Result<Void, Error>
-    func updateTask(_ task: Task) -> Result<Void, Error>
-    func deleteTask(_ task: Task) -> Result<Void, Error>
+    func getTasks() -> Result<[PomTask], Error>
+    func addTask(_ task: PomTask) -> Result<Void, Error>
+    func updateTask(_ task: PomTask) -> Result<Void, Error>
+    func deleteTask(_ task: PomTask) -> Result<Void, Error>
 }

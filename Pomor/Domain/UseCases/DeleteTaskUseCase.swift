@@ -1,4 +1,5 @@
-import SwiftUI
+import PomorCore
+import Foundation
 
 class DeleteTaskUseCase {
     private let repository: TaskRepository
@@ -7,7 +8,7 @@ class DeleteTaskUseCase {
         self.repository = repository
     }
     
-    func execute(task: Task) -> Result<Void, Error> {
+    func execute(task: PomTask) -> Result<Void, Error> {
         repository.deleteTask(task)
     }
 }

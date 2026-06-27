@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DFD8354E2FEB72E000C937E3 /* PomorWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8371E2FEDDCD500C937E3 /* PomorCore */; };
+		DFD838372FEE131700C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD838362FEE131700C937E3 /* PomorCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DF9B1B682F79E6ED00008936 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -14,12 +20,75 @@
 			remoteGlobalIDString = DF9B1ADD2F79902100008936;
 			remoteInfo = Pomor;
 		};
+		DFD8353B2FEB72E000C937E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF9B1AD62F79902100008936 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD8352D2FEB72DF00C937E3;
+			remoteInfo = "PomorWatch Watch App";
+		};
+		DFD835452FEB72E000C937E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF9B1AD62F79902100008936 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD8352D2FEB72DF00C937E3;
+			remoteInfo = "PomorWatch Watch App";
+		};
+		DFD8354C2FEB72E000C937E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF9B1AD62F79902100008936 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD8352D2FEB72DF00C937E3;
+			remoteInfo = "PomorWatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DFD835522FEB72E000C937E3 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				DFD8354E2FEB72E000C937E3 /* PomorWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DF9B1ADE2F79902100008936 /* Pomor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9B1B642F79E6ED00008936 /* PomorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PomorWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD8353A2FEB72E000C937E3 /* PomorWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PomorWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD835442FEB72E000C937E3 /* PomorWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PomorWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DFD835692FEB775C00C937E3 /* Exceptions for "PomorWatch Watch App" folder in "Pomor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Data/WatchLocalTaskDataSource.swift,
+				Data/WatchTaskRepositoryImpl.swift,
+				Dependency/WatchDependencyMap.swift,
+				Dependency/WatchDIContainer.swift,
+				Domain/Interfaces/WatchTaskRepository.swift,
+				Domain/UseCases/AddWatchTaskUseCase.swift,
+				Domain/UseCases/DeleteWatchTaskUseCase.swift,
+				Domain/UseCases/GetWatchTasksUseCase.swift,
+				Domain/UseCases/SyncWatchTasksUseCase.swift,
+				PomorWatchApp.swift,
+				Presentation/WatchAddTaskView.swift,
+				Presentation/WatchTaskListView.swift,
+				Presentation/WatchTaskListViewModel.swift,
+				Presentation/WatchTimerView.swift,
+				Presentation/WatchTimerViewModel.swift,
+				WatchConnectivityManager.swift,
+			);
+			target = DF9B1ADD2F79902100008936 /* Pomor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DF9B1AE02F79902100008936 /* Pomor */ = {
@@ -32,6 +101,24 @@
 			path = PomorTests;
 			sourceTree = "<group>";
 		};
+		DFD8352F2FEB72DF00C937E3 /* PomorWatch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DFD835692FEB775C00C937E3 /* Exceptions for "PomorWatch Watch App" folder in "Pomor" target */,
+			);
+			path = "PomorWatch Watch App";
+			sourceTree = "<group>";
+		};
+		DFD8353D2FEB72E000C937E3 /* PomorWatch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "PomorWatch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		DFD835472FEB72E000C937E3 /* PomorWatch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "PomorWatch Watch AppUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,10 +126,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF9B1B612F79E6ED00008936 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD8352B2FEB72DF00C937E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFD838372FEE131700C937E3 /* PomorCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835372FEB72E000C937E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835412FEB72E000C937E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,6 +167,10 @@
 			children = (
 				DF9B1AE02F79902100008936 /* Pomor */,
 				DF9B1B652F79E6ED00008936 /* PomorTests */,
+				DFD8352F2FEB72DF00C937E3 /* PomorWatch Watch App */,
+				DFD8353D2FEB72E000C937E3 /* PomorWatch Watch AppTests */,
+				DFD835472FEB72E000C937E3 /* PomorWatch Watch AppUITests */,
+				DFD838352FEE131700C937E3 /* Frameworks */,
 				DF9B1ADF2F79902100008936 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,8 +180,18 @@
 			children = (
 				DF9B1ADE2F79902100008936 /* Pomor.app */,
 				DF9B1B642F79E6ED00008936 /* PomorTests.xctest */,
+				DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */,
+				DFD8353A2FEB72E000C937E3 /* PomorWatch Watch AppTests.xctest */,
+				DFD835442FEB72E000C937E3 /* PomorWatch Watch AppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DFD838352FEE131700C937E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,16 +204,20 @@
 				DF9B1ADA2F79902100008936 /* Sources */,
 				DF9B1ADB2F79902100008936 /* Frameworks */,
 				DF9B1ADC2F79902100008936 /* Resources */,
+				DFD835522FEB72E000C937E3 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DFD8354D2FEB72E000C937E3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DF9B1AE02F79902100008936 /* Pomor */,
+				DFD8352F2FEB72DF00C937E3 /* PomorWatch Watch App */,
 			);
 			name = Pomor;
 			packageProductDependencies = (
+				DFD8371E2FEDDCD500C937E3 /* PomorCore */,
 			);
 			productName = Pomor;
 			productReference = DF9B1ADE2F79902100008936 /* Pomor.app */;
@@ -118,6 +246,75 @@
 			productReference = DF9B1B642F79E6ED00008936 /* PomorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD8354F2FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch App" */;
+			buildPhases = (
+				DFD8352A2FEB72DF00C937E3 /* Sources */,
+				DFD8352B2FEB72DF00C937E3 /* Frameworks */,
+				DFD8352C2FEB72DF00C937E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DFD8352F2FEB72DF00C937E3 /* PomorWatch Watch App */,
+			);
+			name = "PomorWatch Watch App";
+			packageProductDependencies = (
+				DFD838362FEE131700C937E3 /* PomorCore */,
+			);
+			productName = "PomorWatch Watch App";
+			productReference = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DFD835392FEB72E000C937E3 /* PomorWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD835532FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch AppTests" */;
+			buildPhases = (
+				DFD835362FEB72E000C937E3 /* Sources */,
+				DFD835372FEB72E000C937E3 /* Frameworks */,
+				DFD835382FEB72E000C937E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFD8353C2FEB72E000C937E3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DFD8353D2FEB72E000C937E3 /* PomorWatch Watch AppTests */,
+			);
+			name = "PomorWatch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "PomorWatch Watch AppTests";
+			productReference = DFD8353A2FEB72E000C937E3 /* PomorWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DFD835432FEB72E000C937E3 /* PomorWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD835562FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch AppUITests" */;
+			buildPhases = (
+				DFD835402FEB72E000C937E3 /* Sources */,
+				DFD835412FEB72E000C937E3 /* Frameworks */,
+				DFD835422FEB72E000C937E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFD835462FEB72E000C937E3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DFD835472FEB72E000C937E3 /* PomorWatch Watch AppUITests */,
+			);
+			name = "PomorWatch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "PomorWatch Watch AppUITests";
+			productReference = DFD835442FEB72E000C937E3 /* PomorWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -125,7 +322,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					DF9B1ADD2F79902100008936 = {
@@ -134,6 +331,17 @@
 					DF9B1B632F79E6ED00008936 = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = DF9B1ADD2F79902100008936;
+					};
+					DFD8352D2FEB72DF00C937E3 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					DFD835392FEB72E000C937E3 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = DFD8352D2FEB72DF00C937E3;
+					};
+					DFD835432FEB72E000C937E3 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = DFD8352D2FEB72DF00C937E3;
 					};
 				};
 			};
@@ -146,6 +354,9 @@
 			);
 			mainGroup = DF9B1AD52F79902100008936;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF9B1ADF2F79902100008936 /* Products */;
 			projectDirPath = "";
@@ -153,6 +364,9 @@
 			targets = (
 				DF9B1ADD2F79902100008936 /* Pomor */,
 				DF9B1B632F79E6ED00008936 /* PomorTests */,
+				DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */,
+				DFD835392FEB72E000C937E3 /* PomorWatch Watch AppTests */,
+				DFD835432FEB72E000C937E3 /* PomorWatch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +380,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF9B1B622F79E6ED00008936 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD8352C2FEB72DF00C937E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835382FEB72E000C937E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835422FEB72E000C937E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,6 +424,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFD8352A2FEB72DF00C937E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835362FEB72E000C937E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD835402FEB72E000C937E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -196,6 +452,21 @@
 			isa = PBXTargetDependency;
 			target = DF9B1ADD2F79902100008936 /* Pomor */;
 			targetProxy = DF9B1B682F79E6ED00008936 /* PBXContainerItemProxy */;
+		};
+		DFD8353C2FEB72E000C937E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */;
+			targetProxy = DFD8353B2FEB72E000C937E3 /* PBXContainerItemProxy */;
+		};
+		DFD835462FEB72E000C937E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */;
+			targetProxy = DFD835452FEB72E000C937E3 /* PBXContainerItemProxy */;
+		};
+		DFD8354D2FEB72E000C937E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */;
+			targetProxy = DFD8354C2FEB72E000C937E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -451,6 +722,165 @@
 			};
 			name = Release;
 		};
+		DFD835502FEB72E000C937E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PomorWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pucpr.Pomor;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pucpr.Pomor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		DFD835512FEB72E000C937E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PomorWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pucpr.Pomor;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pucpr.Pomor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Release;
+		};
+		DFD835542FEB72E000C937E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pucpr.PomorWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PomorWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PomorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		DFD835552FEB72E000C937E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pucpr.PomorWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PomorWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PomorWatch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Release;
+		};
+		DFD835572FEB72E000C937E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pucpr.PomorWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "PomorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		DFD835582FEB72E000C937E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pucpr.PomorWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "PomorWatch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -481,7 +911,53 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		DFD8354F2FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD835502FEB72E000C937E3 /* Debug */,
+				DFD835512FEB72E000C937E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFD835532FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD835542FEB72E000C937E3 /* Debug */,
+				DFD835552FEB72E000C937E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFD835562FEB72E000C937E3 /* Build configuration list for PBXNativeTarget "PomorWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD835572FEB72E000C937E3 /* Debug */,
+				DFD835582FEB72E000C937E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = PomorCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DFD8371E2FEDDCD500C937E3 /* PomorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PomorCore;
+		};
+		DFD838362FEE131700C937E3 /* PomorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */;
+			productName = PomorCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF9B1AD62F79902100008936 /* Project object */;
 }

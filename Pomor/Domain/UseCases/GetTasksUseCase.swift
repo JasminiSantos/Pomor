@@ -1,3 +1,4 @@
+import PomorCore
 import Foundation
 
 class GetTasksUseCase {
@@ -7,7 +8,7 @@ class GetTasksUseCase {
         self.repository = repository
     }
     
-    func execute() -> Result<[Task], Error> {
+    func execute() -> Result<[PomTask], Error> {
         repository.getTasks()
     }
 }

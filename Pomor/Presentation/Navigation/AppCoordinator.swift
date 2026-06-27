@@ -1,9 +1,10 @@
+import PomorCore
 import SwiftUI
 import Combine
 
 enum AppRoute: Hashable {
     case home
-    case timer(Task)
+    case timer(PomTask)
     case form(TaskFormMode)
 }
 
@@ -17,7 +18,7 @@ final class AppCoordinator: ObservableObject {
         self.container = container
     }
     
-    func goToTimer(task: Task) {
+    func goToTimer(task: PomTask) {
         path.append(AppRoute.timer(task))
     }
     
@@ -25,7 +26,7 @@ final class AppCoordinator: ObservableObject {
         path.append(AppRoute.form(.create))
     }
     
-    func goToEditTask(task: Task) {
+    func goToEditTask(task: PomTask) {
         path.append(AppRoute.form(.edit(task)))
     }
     

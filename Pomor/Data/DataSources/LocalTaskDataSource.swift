@@ -1,15 +1,16 @@
+import PomorCore
 import Foundation
 
 protocol TaskDataSource {
-    func fetchTasks() -> Result<[Task], Error>
-    func saveTask(_ task: Task) -> Result<Void, Error>
-    func deleteTask(_ task: Task) -> Result<Void, Error>
-    func updateTask(_ task: Task) -> Result<Void, Error>
+    func fetchTasks() -> Result<[PomTask], Error>
+    func saveTask(_ task: PomTask) -> Result<Void, Error>
+    func deleteTask(_ task: PomTask) -> Result<Void, Error>
+    func updateTask(_ task: PomTask) -> Result<Void, Error>
 }
 
 class LocalTaskDataSource: TaskDataSource {
     private let key = "tasks_storage"
-    private var tasks: [Task] = []
+    private var tasks: [PomTask] = []
     
 
     init() {
@@ -18,21 +19,21 @@ class LocalTaskDataSource: TaskDataSource {
         }
     }
     
-    func fetchTasks() -> Result<[Task], Error> {
+    func fetchTasks() -> Result<[PomTask], Error> {
         .success(tasks)
     }
     
-    func saveTask(_ task: Task) -> Result<Void, Error> {
+    func saveTask(_ task: PomTask) -> Result<Void, Error> {
         tasks.append(task)
         return persist()
     }
     
-    func deleteTask(_ task: Task) -> Result<Void, Error> {
+    func deleteTask(_ task: PomTask) -> Result<Void, Error> {
         tasks.removeAll { $0.id == task.id }
         return persist()
     }
     
-    func updateTask(_ task: Task) -> Result<Void, Error> {
+    func updateTask(_ task: PomTask) -> Result<Void, Error> {
         guard let index = tasks.firstIndex(where: { $0.id == task.id }) else {
             return .failure(TaskError.notFound)
         }
@@ -54,13 +55,13 @@ private extension LocalTaskDataSource {
         }
     }
     
-    func load() -> Result<[Task], Error> {
+    func load() -> Result<[PomTask], Error> {
         guard let data = UserDefaults.standard.data(forKey: key) else {
             return .success([])
         }
         
         do {
-            let decodedTasks = try JSONDecoder().decode([Task].self, from: data)
+            let decodedTasks = try JSONDecoder().decode([PomTask].self, from: data)
             return .success(decodedTasks)
         } catch {
             return .failure(DataSourceError.persistenceFailed)

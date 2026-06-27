@@ -1,12 +1,13 @@
+import PomorCore
 import SwiftUI
 
 struct TaskListView: View {
     
     @ObservedObject var viewModel: TaskListViewModel
     
-    let onTimer: (Task) -> Void
+    let onTimer: (PomTask) -> Void
     let onAdd: () -> Void
-    let onEdit: (Task) -> Void
+    let onEdit: (PomTask) -> Void
     
     var body: some View {
         VStack {
@@ -14,7 +15,7 @@ struct TaskListView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 16) {
                     if viewModel.tasks.isEmpty {
-                        Text("No tasks yet. Add one to get started.")
+                        Text(TaskListStrings.EmptyState.message)
                     } else {
                         ForEach(viewModel.tasks) { task in
                             TaskCard(

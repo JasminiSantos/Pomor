@@ -1,9 +1,10 @@
+import PomorCore
 import SwiftUI
 import Combine
 
 final class TimerViewModel: ObservableObject {
     
-    let task: Task
+    let task: PomTask
     
     @Published var timeRemaining: Int
     @Published var isRunning: Bool = false
@@ -22,7 +23,7 @@ final class TimerViewModel: ObservableObject {
     }
     
     init(
-        task: Task,
+        task: PomTask,
         timerService: TimerService = DefaultTimerService(),
         engine: PomodoroEngine = DefaultPomodoroEngine()
     ) {
@@ -104,9 +105,9 @@ extension TimerViewModel {
     
     var stateTitle: String {
         switch state {
-        case .focus: return "Focus"
-        case .shortBreak: return "Short Break"
-        case .longBreak: return "Long Break"
+        case .focus:      return TimerStrings.State.focus
+        case .shortBreak: return TimerStrings.State.shortBreak
+        case .longBreak:  return TimerStrings.State.longBreak
         }
     }
 }

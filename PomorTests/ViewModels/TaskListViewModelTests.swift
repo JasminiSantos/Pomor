@@ -1,3 +1,4 @@
+import PomorCore
 import Testing
 import Foundation
 @testable import Pomor
@@ -19,7 +20,7 @@ struct TaskListViewModelTests {
     // MARK: - Load Tasks
 
     @Test func loadTasks_success() {
-        let task = Task(id: UUID(), title: "Study", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Study", duration: 25, icon: "book")
         repository.tasks = [task]
 
         sut.loadTasks()
@@ -49,7 +50,7 @@ struct TaskListViewModelTests {
     // MARK: - Delete Task
 
     @Test func deleteTask_success_removesTask() {
-        let task = Task(id: UUID(), title: "Test", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Test", duration: 25, icon: "book")
         repository.tasks = [task]
         sut.loadTasks()
 
@@ -60,7 +61,7 @@ struct TaskListViewModelTests {
     }
 
     @Test func deleteTask_failure_keepsTaskAndShowsError() {
-        let task = Task(id: UUID(), title: "Test", duration: 25, icon: "book")
+        let task = PomTask(id: UUID(), title: "Test", duration: 25, icon: "book")
         repository.tasks = [task]
         sut.loadTasks()
 
