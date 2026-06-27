@@ -1,3 +1,4 @@
+import PomorDI
 import PomorCore
 
 struct DependencyMap {

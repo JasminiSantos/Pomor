@@ -1,7 +1,8 @@
 import PomorCore
+import PomorDI
 
 struct WatchDependencyMap {
-    static func register(in container: WatchDIContainer) {
+    static func register(in container: DIContainer) {
         container.registerSingleton(WatchTaskDataSource.self) { _ in
             WatchLocalTaskDataSource()
         }

@@ -1,9 +1,10 @@
 import SwiftUI
+import PomorDI
 
 @main
 struct PomorWatchApp: App {
-    private let container: WatchDIContainer = {
-        let c = WatchDIContainer()
+    private let container: DIContainer = {
+        let c = DIContainer()
         WatchDependencyMap.register(in: c)
         return c
     }()

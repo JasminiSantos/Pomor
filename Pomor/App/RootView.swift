@@ -1,3 +1,4 @@
+import PomorDI
 import SwiftUI
 
 struct RootView: View {
