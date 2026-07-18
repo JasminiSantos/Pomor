@@ -1,4 +1,5 @@
 import PomorCore
+import PomorDesignSystem
 import SwiftUI
 
 enum TaskFormMode: Hashable {
@@ -7,14 +8,14 @@ enum TaskFormMode: Hashable {
 
     var navigationTitle: String {
         switch self {
-        case .create: return "New Task"
-        case .edit:   return "Edit Task"
+        case .create: return "New Session"
+        case .edit:   return "Edit Session"
         }
     }
 
     var buttonTitle: String {
         switch self {
-        case .create: return "Create Task"
+        case .create: return "Create Session"
         case .edit:   return "Save Changes"
         }
     }
@@ -32,41 +33,50 @@ struct TaskFormView: View {
                 HStack {
                     Button { dismiss() } label: {
                         Image(systemName: "chevron.left")
-                            .padding()
-                            .background(Color.white)
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.pomor(.brand))
+                            .frame(width: 44, height: 44)
+                            .background(.pomor(.surface))
                             .clipShape(Circle())
                     }
-                    
+                    .buttonStyle(.plain)
+
                     Text(viewModel.mode.navigationTitle)
-                        .font(.title2)
-                        .fontWeight(.medium)
-                    
+                        .pomorFont(.screenTitle)
+                        .pomorForeground(.textPrimary)
+
                     Spacer()
                 }
-                
+
                 VStack(alignment: .leading, spacing: 8) {
                     Text(TaskFormStrings.Label.taskTitle)
-                        .foregroundColor(.gray)
-                    
+                        .pomorFont(.label)
+                        .pomorForeground(.textTertiary)
+
                     TextField(TaskFormStrings.Placeholder.taskTitle, text: $viewModel.title)
+                        .pomorFont(.placeholder)
+                        .pomorForeground(.textPrimary)
                         .padding()
                         .frame(height: 55)
-                        .background(Color.white)
+                        .background(.pomor(.surface))
                         .cornerRadius(14)
                 }
-                
+
                 VStack(alignment: .leading, spacing: 8) {
                     Text(TaskFormStrings.Label.duration)
-                        .foregroundColor(.gray)
-                    
+                        .pomorFont(.label)
+                        .pomorForeground(.textTertiary)
+
                     TextField("", text: $viewModel.durationText)
+                        .pomorFont(.body)
+                        .pomorForeground(.textPrimary)
                         .keyboardType(.numberPad)
                         .onChange(of: viewModel.durationText) {
                             viewModel.onDurationTextChanged($0)
                         }
                         .padding()
                         .frame(height: 55)
-                        .background(Color.white)
+                        .background(.pomor(.surface))
                         .cornerRadius(14)
                 }
                 
@@ -83,12 +93,13 @@ struct TaskFormView: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Text(TaskFormStrings.Label.icon)
-                        .foregroundColor(.gray)
-                    
+                        .pomorFont(.label)
+                        .pomorForeground(.textTertiary)
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(viewModel.icons, id: \.self) { icon in
-                                
+
                                 Button {
                                     viewModel.selectedIcon = icon
                                 } label: {
@@ -96,21 +107,21 @@ struct TaskFormView: View {
                                         Circle()
                                             .fill(
                                                 viewModel.selectedIcon == icon
-                                                ? .main
-                                                : Color.white
+                                                ? Color.pomor(.brand)
+                                                : Color.pomor(.surface)
                                             )
                                             .frame(width: 50, height: 50)
-                                        
+
                                         Image(systemName: icon.rawValue)
-                                            .foregroundColor(
+                                            .foregroundStyle(
                                                 viewModel.selectedIcon == icon
-                                                ? .white
-                                                : .gray
+                                                ? Color.pomor(.onBrand)
+                                                : Color.pomor(.textTertiary)
                                             )
                                     }
                                     .shadow(
                                         color: viewModel.selectedIcon == icon
-                                        ? .main.opacity(0.3)
+                                        ? Color.pomor(.brandShadow)
                                         : .clear,
                                         radius: 6
                                     )
@@ -119,9 +130,9 @@ struct TaskFormView: View {
                         }
                     }
                 }
-                
+
                 Spacer()
-                
+
                 PrimaryButton(title: viewModel.mode.buttonTitle) {
                     viewModel.save()
                 }
@@ -130,7 +141,7 @@ struct TaskFormView: View {
             }
             .padding(24)
         }
-        .background(.customBackground)
+        .background(.pomor(.background))
         .navigationBarHidden(true)
         .onAppear {
             viewModel.setupInitialData()

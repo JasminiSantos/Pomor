@@ -1,15 +1,16 @@
 import SwiftUI
+import PomorDesignSystem
 
 struct CircleButton: View {
     let icon: String
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Image(systemName: icon)
-                .foregroundColor(.gray)
+                .foregroundStyle(.pomor(.textTertiary))
                 .frame(width: 50, height: 50)
-                .background(Color.white)
+                .background(.pomor(.surface))
                 .clipShape(Circle())
         }
     }

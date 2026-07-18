@@ -1,41 +1,40 @@
 import SwiftUI
+import PomorDesignSystem
 
 struct TimerCircle: View {
     let time: String
     let progress: Double
     let message: String
-    
+
     var body: some View {
         ZStack {
-            
             Circle()
-                .fill(Color.gray.opacity(0.08))
+                .fill(Color.pomor(.muted))
                 .frame(width: 260, height: 260)
-            
+
             Circle()
-                .stroke(Color.gray.opacity(0.2), lineWidth: 12)
+                .stroke(PomorColor.Border.muted, lineWidth: 12)
                 .frame(width: 260, height: 260)
-            
+
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
-                    .main,
+                    Color.pomor(.brand),
                     style: StrokeStyle(lineWidth: 12, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
                 .frame(width: 260, height: 260)
                 .animation(.linear, value: progress)
-            
+
             VStack(spacing: 8) {
-                
                 Text(time)
-                    .font(.system(size: 48, weight: .bold))
-                
+                    .pomorFont(.timer)
+                    .pomorForeground(.textPrimary)
+
                 Text(message)
-                    .foregroundColor(.gray)
-                    .font(.subheadline)
+                    .pomorFont(.secondary)
+                    .pomorForeground(.textTertiary)
             }
         }
     }
 }
-

@@ -1,6 +1,6 @@
 enum TaskFormStrings {
     enum Label {
-        static let taskTitle = "Task Title"
+        static let taskTitle = "Session Title"
         static let duration = "Duration (minutes)"
         static let icon = "Select Icon"
     }

@@ -1,4 +1,5 @@
 import SwiftUI
+import PomorDesignSystem
 
 enum TaskIcon: String, CaseIterable {
     case brain
@@ -29,8 +30,8 @@ struct IconSelector: View {
                 } label: {
                     Image(systemName: icon.systemName)
                         .padding()
-                        .background(selectedIcon == icon ? .main : Color.gray.opacity(0.2))
-                        .foregroundColor(selectedIcon == icon ? .white : .black)
+                        .background(selectedIcon == icon ? .pomor(.brand) : .pomor(.muted))
+                        .foregroundStyle(selectedIcon == icon ? .pomor(.onBrand) : .pomor(.textPrimary))
                         .clipShape(Circle())
                 }
             }

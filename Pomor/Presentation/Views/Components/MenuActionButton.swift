@@ -1,4 +1,5 @@
 import SwiftUI
+import PomorDesignSystem
 
 struct MenuActionButton: View {
     let title: String
@@ -20,8 +21,9 @@ struct MenuActionButton: View {
                     )
                 
                 Text(title)
-                    .foregroundColor(isDestructive ? color : .primary)
-                
+                    .pomorFont(.label)
+                    .foregroundStyle(isDestructive ? color : Color.pomor(.textPrimary))
+
                 Spacer()
             }
             .padding()
@@ -30,9 +32,9 @@ struct MenuActionButton: View {
             .overlay(border)
         }
     }
-    
+
     private var background: Color {
-        isDestructive ? Color.clear : Color.white
+        isDestructive ? Color.clear : .pomor(.surface)
     }
     
     private var border: some View {

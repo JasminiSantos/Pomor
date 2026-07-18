@@ -1,4 +1,5 @@
 import SwiftUI
+import PomorDesignSystem
 import PomorCore
 
 struct TimerView: View {
@@ -7,7 +8,7 @@ struct TimerView: View {
     
     var body: some View {
         ZStack {
-            Color.customBackground
+            Color.pomor(.background)
                 .ignoresSafeArea()
             
             VStack {
@@ -29,7 +30,8 @@ struct TimerView: View {
                 }
                 
                 Text(TimerStrings.Progress.complete(Int(viewModel.progress * 100)))
-                    .foregroundColor(.gray)
+                    .pomorFont(.secondary)
+                    .pomorForeground(.textTertiary)
                     .padding(.top, 8)
             }
             .navigationTitle(viewModel.task.title)
