@@ -1,26 +1,64 @@
 import SwiftUI
 import PomorCore
+import PomorDesignSystem
 
 struct WatchTaskListView: View {
-    @EnvironmentObject var viewModel: WatchTaskListViewModel
-    @State private var showAdd = false
+    @ObservedObject var viewModel: WatchTaskListViewModel
 
     var body: some View {
-        List {
+        Group {
             if viewModel.tasks.isEmpty {
-                Text("No tasks.\nTap + to add one.")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .listRowBackground(Color.clear)
+                emptyState
+            } else {
+                taskList
             }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                brandHeader
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(value: WatchRoute.addTask) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+    }
 
+    private var emptyState: some View {
+        VStack(spacing: 10) {
+            Spacer(minLength: 0)
+
+            TomatoMark(size: 52, isFloating: true)
+
+            Text(emptyMessage)
+                .font(PomorFont.nunitoSans(size: 12, weight: .regular))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 4)
+
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var brandHeader: some View {
+        HStack(spacing: 5) {
+            TomatoMark(size: 16)
+            Text(WatchTaskListStrings.Brand.name)
+                .font(PomorFont.nunito(size: 13, weight: .extraBold))
+                .tracking(1.2)
+                .foregroundStyle(.primary)
+        }
+    }
+
+    private var taskList: some View {
+        List {
             ForEach(viewModel.tasks) { task in
-                NavigationLink {
-                    WatchTimerView(task: task)
-                } label: {
+                NavigationLink(value: WatchRoute.timer(task)) {
                     HStack(spacing: 8) {
                         Image(systemName: task.icon)
-                            .foregroundColor(.red)
+                            .foregroundStyle(PomorColor.Brand.primary)
                             .frame(width: 20)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(task.title)
@@ -28,23 +66,24 @@ struct WatchTaskListView: View {
                                 .lineLimit(1)
                             Text("\(task.duration) min")
                                 .font(.caption2)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         }
                     }
                 }
-            }
-            .onDelete { viewModel.delete(at: $0) }
-        }
-        .navigationTitle("Pomor")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button { showAdd = true } label: {
-                    Image(systemName: "plus")
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        viewModel.delete(task)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
             }
         }
-        .sheet(isPresented: $showAdd) {
-            WatchAddTaskView()
-        }
+    }
+
+    private var emptyMessage: String {
+        viewModel.hasSyncedFromPhone
+            ? WatchTaskListStrings.EmptyState.synced
+            : WatchTaskListStrings.EmptyState.waiting
     }
 }

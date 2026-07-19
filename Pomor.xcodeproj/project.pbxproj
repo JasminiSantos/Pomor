@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DFD733372FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733362FF026BF00531227 /* PomorDI */; };
 		DFD733382FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733392FF026BF00531227 /* PomorDI */; };
+		DFD7334A2FF0300100531227 /* PomorDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DFD7334B2FF0300100531227 /* PomorDesignSystem */; };
+		DFD7334C2FF0300100531227 /* PomorDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DFD7334D2FF0300100531227 /* PomorDesignSystem */; };
 		DFD8354E2FEB72E000C937E3 /* PomorWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD8371E2FEDDCD500C937E3 /* PomorCore */; };
 		DFD838372FEE131700C937E3 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DFD838362FEE131700C937E3 /* PomorCore */; };
@@ -74,13 +76,20 @@
 				Data/WatchLocalTaskDataSource.swift,
 				Data/WatchTaskRepositoryImpl.swift,
 				Dependency/WatchDependencyMap.swift,
+				Domain/Interfaces/WatchTaskDataSource.swift,
+				Domain/Interfaces/WatchTaskInboundSync.swift,
+				Domain/Interfaces/WatchTaskOutboundSync.swift,
 				Domain/Interfaces/WatchTaskRepository.swift,
 				Domain/UseCases/AddWatchTaskUseCase.swift,
 				Domain/UseCases/DeleteWatchTaskUseCase.swift,
 				Domain/UseCases/GetWatchTasksUseCase.swift,
 				Domain/UseCases/SyncWatchTasksUseCase.swift,
 				PomorWatchApp.swift,
+				Presentation/Navigation/WatchCoordinator.swift,
+				Presentation/Navigation/WatchRootView.swift,
+				Presentation/Navigation/WatchRoute.swift,
 				Presentation/WatchAddTaskView.swift,
+				Presentation/WatchTaskListStrings.swift,
 				Presentation/WatchTaskListView.swift,
 				Presentation/WatchTaskListViewModel.swift,
 				Presentation/WatchTimerView.swift,
@@ -129,6 +138,7 @@
 			files = (
 				DFD8371F2FEDDCD500C937E3 /* PomorCore in Frameworks */,
 				DFD733382FF026BF00531227 /* PomorDI in Frameworks */,
+				DFD7334A2FF0300100531227 /* PomorDesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +155,7 @@
 			files = (
 				DFD838372FEE131700C937E3 /* PomorCore in Frameworks */,
 				DFD733372FF026BF00531227 /* PomorDI in Frameworks */,
+				DFD7334C2FF0300100531227 /* PomorDesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +233,7 @@
 			packageProductDependencies = (
 				DFD8371E2FEDDCD500C937E3 /* PomorCore */,
 				DFD733392FF026BF00531227 /* PomorDI */,
+				DFD7334B2FF0300100531227 /* PomorDesignSystem */,
 			);
 			productName = Pomor;
 			productReference = DF9B1ADE2F79902100008936 /* Pomor.app */;
@@ -269,6 +281,7 @@
 			packageProductDependencies = (
 				DFD838362FEE131700C937E3 /* PomorCore */,
 				DFD733362FF026BF00531227 /* PomorDI */,
+				DFD7334D2FF0300100531227 /* PomorDesignSystem */,
 			);
 			productName = "PomorWatch Watch App";
 			productReference = DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */;
@@ -362,6 +375,7 @@
 			packageReferences = (
 				DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */,
 				DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */,
+				DFD7334E2FF0300100531227 /* XCLocalSwiftPackageReference "PomorDesignSystem" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF9B1ADF2F79902100008936 /* Products */;
@@ -606,6 +620,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -616,7 +631,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
@@ -650,6 +665,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -660,7 +676,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
@@ -689,7 +705,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J74996J2KY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pucpr.PomorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -712,7 +728,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J74996J2KY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pucpr.PomorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -951,6 +967,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = PomorDI;
 		};
+		DFD7334E2FF0300100531227 /* XCLocalSwiftPackageReference "PomorDesignSystem" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = PomorDesignSystem;
+		};
 		DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = PomorCore;
@@ -967,6 +987,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */;
 			productName = PomorDI;
+		};
+		DFD7334B2FF0300100531227 /* PomorDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD7334E2FF0300100531227 /* XCLocalSwiftPackageReference "PomorDesignSystem" */;
+			productName = PomorDesignSystem;
+		};
+		DFD7334D2FF0300100531227 /* PomorDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD7334E2FF0300100531227 /* XCLocalSwiftPackageReference "PomorDesignSystem" */;
+			productName = PomorDesignSystem;
 		};
 		DFD8371E2FEDDCD500C937E3 /* PomorCore */ = {
 			isa = XCSwiftPackageProductDependency;

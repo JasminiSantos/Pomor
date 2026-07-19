@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct WatchAddTaskView: View {
-    @EnvironmentObject var viewModel: WatchTaskListViewModel
-    @Environment(\.dismiss) var dismiss
+    let onSubmit: (String, Int) -> Void
 
+    @Environment(\.dismiss) private var dismiss
     @State private var title = ""
     @State private var duration = 25
 
@@ -14,31 +14,26 @@ struct WatchAddTaskView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            Form {
-                TextField("Task name", text: $title)
+        Form {
+            TextField("Task name", text: $title)
 
-                Picker("Duration", selection: $duration) {
-                    ForEach(durations, id: \.self) { min in
-                        Text("\(min) min").tag(min)
-                    }
+            Picker("Duration", selection: $duration) {
+                ForEach(durations, id: \.self) { minutes in
+                    Text("\(minutes) min").tag(minutes)
                 }
             }
-            .navigationTitle("New Task")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Add") {
-                        viewModel.add(
-                            title: title.trimmingCharacters(in: .whitespaces),
-                            duration: duration
-                        )
-                        dismiss()
-                    }
-                    .disabled(!isValid)
+        }
+        .navigationTitle("New Task")
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Add") {
+                    onSubmit(title.trimmingCharacters(in: .whitespaces), duration)
+                    dismiss()
                 }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                }
+                .disabled(!isValid)
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") { dismiss() }
             }
         }
     }

@@ -13,7 +13,8 @@ struct TaskListViewModelTests {
         repository = MockTaskRepository()
         sut = TaskListViewModel(
             getTasksUseCase: GetTasksUseCase(repository: repository),
-            deleteTaskUseCase: DeleteTaskUseCase(repository: repository)
+            deleteTaskUseCase: DeleteTaskUseCase(repository: repository),
+            changeNotifier: MockTasksChangeNotifier()
         )
     }
 

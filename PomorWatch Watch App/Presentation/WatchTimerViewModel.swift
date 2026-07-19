@@ -1,8 +1,8 @@
-
 import Foundation
 import Combine
 import PomorCore
 
+@MainActor
 final class WatchTimerViewModel: ObservableObject {
 
     let task: PomTask
@@ -13,13 +13,18 @@ final class WatchTimerViewModel: ObservableObject {
 
     private var totalTime: Int
     private var cycleCount: Int = 0
-    private var cancellable: AnyCancellable?
 
-    private let config: PomodoroConfiguration
+    private let timerService: TimerService
+    private let engine: PomodoroEngine
 
-    init(task: PomTask, config: PomodoroConfiguration = PomodoroConfiguration()) {
+    init(
+        task: PomTask,
+        timerService: TimerService,
+        engine: PomodoroEngine
+    ) {
         self.task = task
-        self.config = config
+        self.timerService = timerService
+        self.engine = engine
         let duration = task.duration * 60
         self.totalTime = duration
         self.timeRemaining = duration
@@ -30,7 +35,7 @@ final class WatchTimerViewModel: ObservableObject {
     }
 
     var progress: Double {
-        1 - Double(timeRemaining) / Double(totalTime)
+        1 - Double(timeRemaining)/Double(totalTime)
     }
 
     var stateTitle: String {
@@ -44,16 +49,16 @@ final class WatchTimerViewModel: ObservableObject {
     func start() {
         guard !isRunning else { return }
         isRunning = true
-        cancellable = Timer
-            .publish(every: 1, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in self?.tick() }
+        timerService.start(interval: 1) { [weak self] in
+            Task { @MainActor in
+                self?.tick()
+            }
+        }
     }
 
     func stop() {
         isRunning = false
-        cancellable?.cancel()
-        cancellable = nil
+        timerService.stop()
     }
 
     func toggle() {
@@ -78,9 +83,11 @@ final class WatchTimerViewModel: ObservableObject {
     }
 
     private func handleFinish() {
-        let cycle = cycleCount
-        let engine = DefaultPomodoroEngine(config: config)
-        let result = engine.nextState(current: state, cycleCount: cycle, taskDuration: task.duration)
+        let result = engine.nextState(
+            current: state,
+            cycleCount: cycleCount,
+            taskDuration: task.duration
+        )
         state = result.state
         totalTime = result.duration
         timeRemaining = result.duration

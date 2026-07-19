@@ -5,8 +5,8 @@ struct WatchTimerView: View {
 
     @StateObject private var viewModel: WatchTimerViewModel
 
-    init(task: PomTask) {
-        _viewModel = StateObject(wrappedValue: WatchTimerViewModel(task: task))
+    init(viewModel: WatchTimerViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {

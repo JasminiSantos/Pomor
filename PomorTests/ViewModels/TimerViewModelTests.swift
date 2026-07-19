@@ -9,7 +9,11 @@ struct TimerViewModelTests {
 
     init() {
         let task = PomTask(id: UUID(), title: "Study", duration: 25, icon: "book")
-        sut = TimerViewModel(task: task)
+        sut = TimerViewModel(
+            task: task,
+            timerService: DefaultTimerService(),
+            engine: DefaultPomodoroEngine()
+        )
     }
 
     @Test func initialState() {

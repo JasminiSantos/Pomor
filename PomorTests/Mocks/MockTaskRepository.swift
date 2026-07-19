@@ -1,6 +1,19 @@
 import PomorCore
+import Combine
 import Foundation
 @testable import Pomor
+
+final class MockTasksChangeNotifier: TasksChangeNotifying {
+    private let subject = PassthroughSubject<Void, Never>()
+
+    var tasksDidChange: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
+    }
+
+    func notifyTasksDidChange() {
+        subject.send(())
+    }
+}
 
 final class MockTaskRepository: TaskRepository {
     
