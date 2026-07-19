@@ -5,7 +5,8 @@ let package = Package(
     name: "PomorCore",
     platforms: [
         .iOS(.v16),
-        .watchOS(.v9)
+        .watchOS(.v9),
+        .macOS(.v13),
     ],
     products: [
         .library(
