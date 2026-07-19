@@ -20,7 +20,7 @@ struct TaskCard: View {
 
             VStack(alignment: .leading) {
                 Text(title)
-                    .pomorFont(.label)
+                    .pomorFont(.button)
                     .pomorForeground(.textPrimary)
 
                 HStack {

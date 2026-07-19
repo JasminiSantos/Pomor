@@ -6,10 +6,6 @@ struct TaskListView: View {
 
     @ObservedObject var viewModel: TaskListViewModel
 
-    let onTimer: (PomTask) -> Void
-    let onAdd: () -> Void
-    let onEdit: (PomTask) -> Void
-
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .leading, spacing: 0) {
@@ -25,23 +21,15 @@ struct TaskListView: View {
                 }
             }
 
-            FloatingButton { onAdd() }
+            FloatingButton { viewModel.addTask() }
                 .padding(.trailing, 24)
                 .padding(.bottom, 28)
         }
         .background(Color.pomor(.background).ignoresSafeArea())
         .sheet(isPresented: $viewModel.showMenu) {
             TaskMenuSheet(
-                onEdit: {
-                    viewModel.showMenu = false
-                    if let task = viewModel.selectedTask {
-                        onEdit(task)
-                    }
-                },
-                onDelete: {
-                    viewModel.showMenu = false
-                    viewModel.showDeleteDialog = true
-                }
+                onEdit: { viewModel.editSelectedTask() },
+                onDelete: { viewModel.requestDeleteSelectedTask() }
             )
             .presentationDetents([.height(240)])
             .presentationDragIndicator(.hidden)
@@ -69,7 +57,7 @@ struct TaskListView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 8) {
-                TomatoMark(size: 26)
+                TomatoMark(size: 32)
 
                 Text(TaskListStrings.Brand.name)
                     .pomorFont(.brand)
@@ -113,11 +101,10 @@ struct TaskListView: View {
                         duration: task.duration,
                         icon: task.icon
                     ) {
-                        viewModel.selectedTask = task
-                        viewModel.showMenu = true
+                        viewModel.openMenu(for: task)
                     }
                     .onTapGesture {
-                        onTimer(task)
+                        viewModel.openTimer(for: task)
                     }
                 }
             }

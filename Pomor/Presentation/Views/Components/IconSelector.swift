@@ -10,31 +10,48 @@ enum TaskIcon: String, CaseIterable {
     case cupAndSaucer = "cup.and.saucer"
     case musicNote = "music.note"
     case target
-    
-    var systemName: String {
-        rawValue
-    }
+
+    var systemName: String { rawValue }
 }
 
 struct IconSelector: View {
-    
-    let icons = TaskIcon.allCases
-    
-    @State private var selectedIcon: TaskIcon = .target
-    
+    let icons: [TaskIcon]
+    @Binding var selection: TaskIcon
+
     var body: some View {
-        HStack {
-            ForEach(icons, id: \.self) { icon in
-                Button {
-                    selectedIcon = icon
-                } label: {
-                    Image(systemName: icon.systemName)
-                        .padding()
-                        .background(selectedIcon == icon ? .pomor(.brand) : .pomor(.muted))
-                        .foregroundStyle(selectedIcon == icon ? .pomor(.onBrand) : .pomor(.textPrimary))
-                        .clipShape(Circle())
+        VStack(alignment: .leading, spacing: 12) {
+            Text(TaskFormStrings.Label.icon)
+                .pomorFont(.label)
+                .pomorForeground(.textTertiary)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(icons, id: \.self) { icon in
+                        iconButton(for: icon)
+                    }
                 }
             }
+        }
+    }
+
+    private func iconButton(for icon: TaskIcon) -> some View {
+        let isSelected = selection == icon
+
+        return Button {
+            selection = icon
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(isSelected ? Color.pomor(.brand) : Color.pomor(.surface))
+                    .frame(width: 50, height: 50)
+
+                Image(systemName: icon.systemName)
+                    .foregroundStyle(isSelected ? Color.pomor(.onBrand) : Color.pomor(.textTertiary))
+            }
+            .shadow(
+                color: isSelected ? Color.pomor(.brandShadow) : .clear,
+                radius: 6
+            )
         }
     }
 }

@@ -1,18 +1,20 @@
-import PomorDI
+import PomorDesignSystem
+import SwiftData
 import SwiftUI
 
 @main
 struct PomorApp: App {
-    
-    let container: DIContainer = {
-        let c = DIContainer()
-        DependencyMap.register(in: c)
-        return c
-    }()
-    
+    private let dependencies: DependencyMap
+
+    init() {
+        FontRegistrar.register()
+        dependencies = .live()
+    }
+
     var body: some Scene {
         WindowGroup {
-            RootView(container: container)
+            RootView(container: dependencies.container)
         }
+        .modelContainer(dependencies.modelContainer)
     }
 }

@@ -1,4 +1,5 @@
 import PomorCore
+import PomorDesignSystem
 import SwiftUI
 import Combine
 
@@ -24,8 +25,8 @@ final class TimerViewModel: ObservableObject {
     
     init(
         task: PomTask,
-        timerService: TimerService = DefaultTimerService(),
-        engine: PomodoroEngine = DefaultPomodoroEngine()
+        timerService: TimerService,
+        engine: PomodoroEngine
     ) {
         self.task = task
         self.timerService = timerService
@@ -97,9 +98,9 @@ extension TimerViewModel {
     
     var backgroundColor: Color {
         switch state {
-        case .focus: return .red.opacity(0.1)
-        case .shortBreak: return .green.opacity(0.1)
-        case .longBreak: return .blue.opacity(0.1)
+        case .focus:      return PomorColor.Timer.focusSoft
+        case .shortBreak: return PomorColor.Timer.shortBreakSoft
+        case .longBreak:  return PomorColor.Timer.longBreakSoft
         }
     }
     

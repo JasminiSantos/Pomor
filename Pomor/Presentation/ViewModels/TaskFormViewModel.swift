@@ -41,7 +41,7 @@ final class TaskFormViewModel: ObservableObject {
     
     var selectedDuration: Int? {
         guard let value = Int(durationText),
-              [15, 25, 30, 45].contains(value) else { return nil }
+              TaskDurationPresets.values.contains(value) else { return nil }
         return value
     }
     

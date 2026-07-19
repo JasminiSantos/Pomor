@@ -1,21 +1,23 @@
 import PomorCore
 import Foundation
 
-class TaskRepositoryImpl: TaskRepository {
+final class TaskRepositoryImpl: TaskRepository {
 
     private let dataSource: TaskDataSource
-    private let connectivityManager: PhoneConnectivityManager
+    private let watchSyncService: WatchSyncService
 
     init(
         dataSource: TaskDataSource,
-        connectivityManager: PhoneConnectivityManager = .shared
+        watchSyncService: WatchSyncService
     ) {
         self.dataSource = dataSource
-        self.connectivityManager = connectivityManager
+        self.watchSyncService = watchSyncService
     }
 
     func getTasks() -> Result<[PomTask], Error> {
-        dataSource.fetchTasks()
+        let result = dataSource.fetchTasks()
+        if case .success(let tasks) = result { watchSyncService.syncTasks(tasks) }
+        return result
     }
 
     func addTask(_ task: PomTask) -> Result<Void, Error> {
@@ -38,7 +40,7 @@ class TaskRepositoryImpl: TaskRepository {
 
     private func syncToWatch() {
         if case .success(let tasks) = dataSource.fetchTasks() {
-            connectivityManager.syncTasks(tasks)
+            watchSyncService.syncTasks(tasks)
         }
     }
 }

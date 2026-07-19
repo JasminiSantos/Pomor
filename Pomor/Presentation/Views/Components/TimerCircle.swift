@@ -9,11 +9,7 @@ struct TimerCircle: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.pomor(.muted))
-                .frame(width: 260, height: 260)
-
-            Circle()
-                .stroke(PomorColor.Border.muted, lineWidth: 12)
+                .stroke(PomorColor.Brand.soft, lineWidth: 12)
                 .frame(width: 260, height: 260)
 
             Circle()

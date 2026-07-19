@@ -3,38 +3,53 @@ import PomorDesignSystem
 import PomorCore
 
 struct TimerView: View {
-    
+
     @StateObject var viewModel: TimerViewModel
-    
+
     var body: some View {
-        ZStack {
-            Color.pomor(.background)
-                .ignoresSafeArea()
-            
+        VStack(spacing: 0) {
+            NavigationHeader(
+                title: viewModel.task.title,
+                titlePosition: .center
+            )
+            .padding(.horizontal, 24)
+            .padding(.top, 8)
+
+            Spacer()
+
             VStack {
-                
+                Spacer()
                 TimerCircle(
                     time: viewModel.formattedTime,
                     progress: viewModel.progress,
                     message: viewModel.stateTitle
                 )
                 
-                HStack(spacing: 24) {
-                    CircleButton(icon: "arrow.counterclockwise") {
-                        viewModel.reset()
+                Spacer()
+                
+                VStack {
+                    
+                    HStack(spacing: 24) {
+                        CircleButton(icon: "arrow.counterclockwise") {
+                            viewModel.reset()
+                        }
+                        
+                        PlayPauseButton(isRunning: viewModel.isRunning) {
+                            viewModel.toggle()
+                        }
                     }
                     
-                    PlayPauseButton(isRunning: viewModel.isRunning) {
-                        viewModel.toggle()
-                    }
+                    Text(TimerStrings.Progress.complete(Int(viewModel.progress * 100)))
+                        .pomorFont(.secondary)
+                        .pomorForeground(.textTertiary)
+                        .padding(.top, 8)
                 }
-                
-                Text(TimerStrings.Progress.complete(Int(viewModel.progress * 100)))
-                    .pomorFont(.secondary)
-                    .pomorForeground(.textTertiary)
-                    .padding(.top, 8)
+                Spacer()
             }
-            .navigationTitle(viewModel.task.title)
+
+            Spacer()
         }
+        .background(Color.pomor(.background).ignoresSafeArea())
+        .navigationBarHidden(true)
     }
 }
