@@ -93,6 +93,10 @@ struct DependencyMap {
             DefaultTimerService()
         }
 
+        container.registerSingleton(LiveActivityManaging.self) { _ in
+            LiveActivityManager()
+        }
+
         container.register(PomodoroEngine.self) { r in
             DefaultPomodoroEngine(config: r.resolve(PomodoroConfiguration.self))
         }
@@ -101,7 +105,8 @@ struct DependencyMap {
             TimerViewModel(
                 task: task,
                 timerService: r.resolve(TimerService.self),
-                engine: r.resolve(PomodoroEngine.self)
+                engine: r.resolve(PomodoroEngine.self),
+                liveActivity: r.resolve(LiveActivityManaging.self)
             )
         }
     }

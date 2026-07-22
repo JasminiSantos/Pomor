@@ -37,6 +37,11 @@ final class AppCoordinator: ObservableObject {
         path.append(AppRoute.form(.edit(task)))
     }
 
+    func handleDeepLink(_ url: URL) {
+        guard let link = PomorDeepLink.parse(url) else { return }
+        navigate(to: link)
+    }
+
     @ViewBuilder
     func build(_ route: AppRoute) -> some View {
         switch route {
@@ -57,5 +62,35 @@ final class AppCoordinator: ObservableObject {
         case .form(let mode):
             TaskFormCoordinator(mode: mode, resolver: container).start()
         }
+    }
+
+    private func navigate(to link: PomorDeepLink) {
+        prepareForNavigation()
+
+        switch link {
+        case .home:
+            path = NavigationPath()
+        case .timer(let taskId):
+            openTimer(taskId: taskId)
+        }
+    }
+
+    private func prepareForNavigation() {
+        if root == .splash {
+            root = .home
+        }
+    }
+
+    private func openTimer(taskId: UUID) {
+        let getTasks = container.resolve(GetTasksUseCase.self)
+        guard case .success(let tasks) = getTasks.execute(),
+              let task = tasks.first(where: { $0.id == taskId }) else {
+            path = NavigationPath()
+            return
+        }
+
+        var nextPath = NavigationPath()
+        nextPath.append(AppRoute.timer(task))
+        path = nextPath
     }
 }

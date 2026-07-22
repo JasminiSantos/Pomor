@@ -1,6 +1,6 @@
 import Foundation
 
-public enum TimerState: Sendable {
+public enum TimerState: String, Codable, Hashable, Sendable {
     case focus
     case shortBreak
     case longBreak

@@ -18,5 +18,8 @@ struct RootView: View {
                     coordinator.build(route)
                 }
         }
+        .onOpenURL { url in
+            coordinator.handleDeepLink(url)
+        }
     }
 }

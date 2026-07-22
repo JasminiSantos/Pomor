@@ -13,9 +13,11 @@ final class TimerViewModel: ObservableObject {
     
     private var totalTime: Int
     private var cycleCount: Int = 0
+    private var sessionObservation: Task<Void, Never>?
     
     private let timerService: TimerService
     private let engine: PomodoroEngine
+    private let liveActivity: LiveActivityManaging
     
     var formattedTime: String {
         let minutes = timeRemaining/60
@@ -26,15 +28,35 @@ final class TimerViewModel: ObservableObject {
     init(
         task: PomTask,
         timerService: TimerService,
-        engine: PomodoroEngine
+        engine: PomodoroEngine,
+        liveActivity: LiveActivityManaging
     ) {
         self.task = task
         self.timerService = timerService
         self.engine = engine
+        self.liveActivity = liveActivity
         
-        let duration = task.duration * 60
-        self.totalTime = duration
-        self.timeRemaining = duration
+        if let session = liveActivity.currentSession(for: task.id) {
+            self.state = session.state
+            self.totalTime = session.phaseDuration
+            self.timeRemaining = session.secondsRemaining
+            self.cycleCount = session.cycleCount
+            self.isRunning = session.isRunning
+        } else {
+            let duration = task.duration * 60
+            self.totalTime = duration
+            self.timeRemaining = duration
+        }
+
+        if isRunning {
+            resumeTicker()
+        }
+
+        observeLiveActivitySession()
+    }
+
+    deinit {
+        sessionObservation?.cancel()
     }
     
     var progress: Double {
@@ -45,15 +67,27 @@ final class TimerViewModel: ObservableObject {
         guard !isRunning else { return }
         
         isRunning = true
-        
-        timerService.start(interval: 1) { [weak self] in
-            self?.tick()
-        }
+        liveActivity.start(
+            task: task,
+            state: state,
+            secondsRemaining: timeRemaining,
+            phaseDuration: totalTime,
+            cycleCount: cycleCount
+        )
+        resumeTicker()
     }
     
     func stop() {
+        guard isRunning else { return }
         isRunning = false
         timerService.stop()
+        liveActivity.update(
+            state: state,
+            secondsRemaining: timeRemaining,
+            phaseDuration: totalTime,
+            cycleCount: cycleCount,
+            isRunning: false
+        )
     }
     
     func toggle() {
@@ -61,13 +95,23 @@ final class TimerViewModel: ObservableObject {
     }
     
     func reset() {
-        stop()
+        if isRunning {
+            isRunning = false
+            timerService.stop()
+        }
         state = .focus
         cycleCount = 0
         
         let duration = task.duration * 60
         totalTime = duration
         timeRemaining = duration
+        liveActivity.end()
+    }
+    
+    private func resumeTicker() {
+        timerService.start(interval: 1) { [weak self] in
+            self?.tick()
+        }
     }
     
     private func tick() {
@@ -90,7 +134,47 @@ final class TimerViewModel: ObservableObject {
         timeRemaining = result.duration
         cycleCount = result.cycle
         
-        start()
+        liveActivity.update(
+            state: state,
+            secondsRemaining: timeRemaining,
+            phaseDuration: totalTime,
+            cycleCount: cycleCount,
+            isRunning: true
+        )
+    }
+
+    private func observeLiveActivitySession() {
+        sessionObservation?.cancel()
+        sessionObservation = Task { [weak self] in
+            guard let self else { return }
+            for await session in liveActivity.sessionUpdates(for: task.id) {
+                await MainActor.run {
+                    self.applyRemoteSession(session)
+                }
+            }
+        }
+    }
+
+    func syncFromLiveActivity() {
+        guard let session = liveActivity.currentSession(for: task.id) else { return }
+        applyRemoteSession(session)
+    }
+
+    private func applyRemoteSession(_ session: TimerSessionSnapshot) {
+        state = session.state
+        totalTime = session.phaseDuration
+        timeRemaining = session.secondsRemaining
+        cycleCount = session.cycleCount
+
+        if session.isRunning == isRunning { return }
+
+        if session.isRunning {
+            isRunning = true
+            resumeTicker()
+        } else {
+            isRunning = false
+            timerService.stop()
+        }
     }
 }
 

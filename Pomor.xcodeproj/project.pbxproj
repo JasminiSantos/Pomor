@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1A00092FF1000100531227 /* PomorWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF1A00012FF1000100531227 /* PomorWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DF1A00112FF1000100531227 /* PomorCore in Frameworks */ = {isa = PBXBuildFile; productRef = DF1A000F2FF1000100531227 /* PomorCore */; };
+		DF1A00122FF1000100531227 /* PomorDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DF1A00102FF1000100531227 /* PomorDesignSystem */; };
 		DFD733372FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733362FF026BF00531227 /* PomorDI */; };
 		DFD733382FF026BF00531227 /* PomorDI in Frameworks */ = {isa = PBXBuildFile; productRef = DFD733392FF026BF00531227 /* PomorDI */; };
 		DFD7334A2FF0300100531227 /* PomorDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DFD7334B2FF0300100531227 /* PomorDesignSystem */; };
@@ -17,6 +20,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DF1A000A2FF1000100531227 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF9B1AD62F79902100008936 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF1A00042FF1000100531227;
+			remoteInfo = PomorWidgets;
+		};
 		DF9B1B682F79E6ED00008936 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF9B1AD62F79902100008936 /* Project object */;
@@ -48,6 +58,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		DF1A00082FF1000100531227 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DF1A00092FF1000100531227 /* PomorWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFD835522FEB72E000C937E3 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DF1A00012FF1000100531227 /* PomorWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PomorWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9B1ADE2F79902100008936 /* Pomor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9B1B642F79E6ED00008936 /* PomorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PomorWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +92,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DF1A00032FF1000100531227 /* Exceptions for "PomorWidgets" folder in "PomorWidgets" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF1A00042FF1000100531227 /* PomorWidgets */;
+		};
 		DFD835692FEB775C00C937E3 /* Exceptions for "PomorWatch Watch App" folder in "Pomor" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -101,6 +130,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DF1A00022FF1000100531227 /* PomorWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF1A00032FF1000100531227 /* Exceptions for "PomorWidgets" folder in "PomorWidgets" target */,
+			);
+			path = PomorWidgets;
+			sourceTree = "<group>";
+		};
 		DF9B1AE02F79902100008936 /* Pomor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Pomor;
@@ -132,6 +169,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DF1A00062FF1000100531227 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF1A00112FF1000100531227 /* PomorCore in Frameworks */,
+				DF1A00122FF1000100531227 /* PomorDesignSystem in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF9B1ADB2F79902100008936 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,6 +230,7 @@
 				DFD8352F2FEB72DF00C937E3 /* PomorWatch Watch App */,
 				DFD8353D2FEB72E000C937E3 /* PomorWatch Watch AppTests */,
 				DFD835472FEB72E000C937E3 /* PomorWatch Watch AppUITests */,
+				DF1A00022FF1000100531227 /* PomorWidgets */,
 				DFD838352FEE131700C937E3 /* Frameworks */,
 				DF9B1ADF2F79902100008936 /* Products */,
 			);
@@ -197,6 +244,7 @@
 				DFD8352E2FEB72DF00C937E3 /* PomorWatch Watch App.app */,
 				DFD8353A2FEB72E000C937E3 /* PomorWatch Watch AppTests.xctest */,
 				DFD835442FEB72E000C937E3 /* PomorWatch Watch AppUITests.xctest */,
+				DF1A00012FF1000100531227 /* PomorWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +259,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DF1A00042FF1000100531227 /* PomorWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF1A000E2FF1000100531227 /* Build configuration list for PBXNativeTarget "PomorWidgets" */;
+			buildPhases = (
+				DF1A00052FF1000100531227 /* Sources */,
+				DF1A00062FF1000100531227 /* Frameworks */,
+				DF1A00072FF1000100531227 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DF1A00022FF1000100531227 /* PomorWidgets */,
+			);
+			name = PomorWidgets;
+			packageProductDependencies = (
+				DF1A000F2FF1000100531227 /* PomorCore */,
+				DF1A00102FF1000100531227 /* PomorDesignSystem */,
+			);
+			productName = PomorWidgets;
+			productReference = DF1A00012FF1000100531227 /* PomorWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		DF9B1ADD2F79902100008936 /* Pomor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF9B1AE92F79902200008936 /* Build configuration list for PBXNativeTarget "Pomor" */;
@@ -218,12 +290,14 @@
 				DF9B1ADA2F79902100008936 /* Sources */,
 				DF9B1ADB2F79902100008936 /* Frameworks */,
 				DF9B1ADC2F79902100008936 /* Resources */,
+				DF1A00082FF1000100531227 /* Embed Foundation Extensions */,
 				DFD835522FEB72E000C937E3 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				DFD8354D2FEB72E000C937E3 /* PBXTargetDependency */,
+				DF1A000B2FF1000100531227 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DF9B1AE02F79902100008936 /* Pomor */,
@@ -343,6 +417,9 @@
 				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
+					DF1A00042FF1000100531227 = {
+						CreatedOnToolsVersion = 26.5;
+					};
 					DF9B1ADD2F79902100008936 = {
 						CreatedOnToolsVersion = 26.3;
 					};
@@ -387,11 +464,19 @@
 				DFD8352D2FEB72DF00C937E3 /* PomorWatch Watch App */,
 				DFD835392FEB72E000C937E3 /* PomorWatch Watch AppTests */,
 				DFD835432FEB72E000C937E3 /* PomorWatch Watch AppUITests */,
+				DF1A00042FF1000100531227 /* PomorWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DF1A00072FF1000100531227 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF9B1ADC2F79902100008936 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +515,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DF1A00052FF1000100531227 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DF9B1ADA2F79902100008936 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,6 +560,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DF1A000B2FF1000100531227 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF1A00042FF1000100531227 /* PomorWidgets */;
+			targetProxy = DF1A000A2FF1000100531227 /* PBXContainerItemProxy */;
+		};
 		DF9B1B692F79E6ED00008936 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DF9B1ADD2F79902100008936 /* Pomor */;
@@ -491,6 +588,77 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		DF1A000C2FF1000100531227 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PomorWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pomor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pucpr.Pomor.PomorWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DF1A000D2FF1000100531227 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J74996J2KY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PomorWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pomor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pucpr.Pomor.PomorWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		DF9B1AE72F79902200008936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -618,6 +786,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -659,6 +828,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Config/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -904,6 +1074,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DF1A000E2FF1000100531227 /* Build configuration list for PBXNativeTarget "PomorWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF1A000C2FF1000100531227 /* Debug */,
+				DF1A000D2FF1000100531227 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DF9B1AD92F79902100008936 /* Build configuration list for PBXProject "Pomor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -976,6 +1155,16 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DF1A000F2FF1000100531227 /* PomorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD837AF2FEDEDCE00C937E3 /* XCLocalSwiftPackageReference "PomorCore" */;
+			productName = PomorCore;
+		};
+		DF1A00102FF1000100531227 /* PomorDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFD7334E2FF0300100531227 /* XCLocalSwiftPackageReference "PomorDesignSystem" */;
+			productName = PomorDesignSystem;
+		};
 		DFD733362FF026BF00531227 /* PomorDI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFD733352FF0269E00531227 /* XCLocalSwiftPackageReference "PomorDI" */;
