@@ -26,7 +26,10 @@ final class AppCoordinator: ObservableObject {
     }
 
     func goToTimer(task: PomTask) {
-        path.append(AppRoute.timer(task))
+        // Uma tela de timer por vez (evita empilhar sessões na navegação).
+        var nextPath = NavigationPath()
+        nextPath.append(AppRoute.timer(task))
+        path = nextPath
     }
 
     func goToAddTask() {

@@ -3,6 +3,8 @@ import PomorCore
 @testable import Pomor
 
 final class NoOpLiveActivityManager: LiveActivityManaging {
+    var activeTaskId: UUID? { nil }
+
     func start(
         task: PomTask,
         state: TimerState,

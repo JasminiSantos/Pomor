@@ -46,6 +46,8 @@ final class TimerViewModel: ObservableObject {
             let duration = task.duration * 60
             self.totalTime = duration
             self.timeRemaining = duration
+            // Garante um único ticker: limpa sessão anterior de outra tarefa.
+            timerService.stop()
         }
 
         if isRunning {
@@ -65,7 +67,9 @@ final class TimerViewModel: ObservableObject {
     
     func start() {
         guard !isRunning else { return }
-        
+
+        // Um timer por vez: para o ticker global e substitui qualquer Live Activity anterior.
+        timerService.stop()
         isRunning = true
         liveActivity.start(
             task: task,

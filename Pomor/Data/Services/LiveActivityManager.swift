@@ -6,6 +6,12 @@ final class LiveActivityManager: LiveActivityManaging {
 
     private var activity: Activity<PomodoroActivityAttributes>?
     private var trackedTaskId: UUID?
+    private var startTask: Task<Void, Never>?
+
+    var activeTaskId: UUID? {
+        Activity<PomodoroActivityAttributes>.activities.first?.attributes.taskId
+            ?? trackedTaskId
+    }
 
     func start(
         task: PomTask,
@@ -16,47 +22,16 @@ final class LiveActivityManager: LiveActivityManaging {
     ) {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
 
-        adopt(taskId: task.id)
-
-        if activity != nil {
-            update(
+        startTask?.cancel()
+        startTask = Task { [weak self] in
+            guard let self else { return }
+            await self.startExclusively(
+                task: task,
                 state: state,
                 secondsRemaining: secondsRemaining,
                 phaseDuration: phaseDuration,
-                cycleCount: cycleCount,
-                isRunning: true
+                cycleCount: cycleCount
             )
-            return
-        }
-
-        for orphan in Activity<PomodoroActivityAttributes>.activities {
-            Task {
-                await orphan.end(nil, dismissalPolicy: .immediate)
-            }
-        }
-
-        let attributes = PomodoroActivityAttributes(
-            taskTitle: task.title,
-            taskId: task.id,
-            sessionMinutes: task.duration
-        )
-        let contentState = makeContentState(
-            state: state,
-            secondsRemaining: secondsRemaining,
-            phaseDuration: phaseDuration,
-            cycleCount: cycleCount,
-            isRunning: true
-        )
-
-        do {
-            activity = try Activity.request(
-                attributes: attributes,
-                content: .init(state: contentState, staleDate: nil)
-            )
-            trackedTaskId = task.id
-            PomorLiveActivitySignal.postSessionChanged()
-        } catch {
-            activity = nil
         }
     }
 
@@ -88,26 +63,17 @@ final class LiveActivityManager: LiveActivityManaging {
     }
 
     func end() {
-        if let trackedTaskId {
-            adopt(taskId: trackedTaskId)
-        }
+        startTask?.cancel()
+        startTask = nil
 
-        let current = activity
+        let toEnd = Activity<PomodoroActivityAttributes>.activities
         activity = nil
         trackedTaskId = nil
 
-        guard let current else {
-            for existing in Activity<PomodoroActivityAttributes>.activities {
-                Task {
-                    await existing.end(nil, dismissalPolicy: .immediate)
-                }
-            }
-            PomorLiveActivitySignal.postSessionChanged()
-            return
-        }
-
         Task {
-            await current.end(nil, dismissalPolicy: .immediate)
+            for existing in toEnd {
+                await existing.end(nil, dismissalPolicy: .immediate)
+            }
             PomorLiveActivitySignal.postSessionChanged()
         }
     }
@@ -148,6 +114,77 @@ final class LiveActivityManager: LiveActivityManaging {
                 task.cancel()
                 PomorLiveActivitySignal.removeObserver(observerID)
             }
+        }
+    }
+
+    private func startExclusively(
+        task: PomTask,
+        state: TimerState,
+        secondsRemaining: Int,
+        phaseDuration: Int,
+        cycleCount: Int
+    ) async {
+        await endActivities(except: task.id)
+        guard !Task.isCancelled else { return }
+
+        let content = makeContentState(
+            state: state,
+            secondsRemaining: secondsRemaining,
+            phaseDuration: phaseDuration,
+            cycleCount: cycleCount,
+            isRunning: true
+        )
+
+        if await resumeExisting(taskId: task.id, content: content) { return }
+        requestNew(task: task, content: content)
+    }
+
+    private func endActivities(except taskId: UUID) async {
+        let others = Activity<PomodoroActivityAttributes>.activities.filter {
+            $0.attributes.taskId != taskId
+        }
+        for other in others {
+            await other.end(nil, dismissalPolicy: .immediate)
+        }
+    }
+
+    private func resumeExisting(
+        taskId: UUID,
+        content: PomodoroActivityAttributes.ContentState
+    ) async -> Bool {
+        guard let existing = Activity<PomodoroActivityAttributes>.activities.first(where: {
+            $0.attributes.taskId == taskId
+        }) else {
+            return false
+        }
+
+        activity = existing
+        trackedTaskId = taskId
+        await existing.update(.init(state: content, staleDate: nil))
+        PomorLiveActivitySignal.postSessionChanged()
+        return true
+    }
+
+    private func requestNew(
+        task: PomTask,
+        content: PomodoroActivityAttributes.ContentState
+    ) {
+        let attributes = PomodoroActivityAttributes(
+            taskTitle: task.title,
+            taskId: task.id,
+            sessionMinutes: task.duration
+        )
+
+        do {
+            activity = try Activity.request(
+                attributes: attributes,
+                content: .init(state: content, staleDate: nil)
+            )
+            trackedTaskId = task.id
+            PomorLiveActivitySignal.postSessionChanged()
+        } catch {
+            activity = nil
+            trackedTaskId = nil
         }
     }
 

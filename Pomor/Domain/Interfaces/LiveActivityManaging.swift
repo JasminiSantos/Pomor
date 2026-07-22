@@ -2,6 +2,9 @@ import Foundation
 import PomorCore
 
 protocol LiveActivityManaging {
+
+    var activeTaskId: UUID? { get }
+
     func start(
         task: PomTask,
         state: TimerState,
@@ -18,6 +21,5 @@ protocol LiveActivityManaging {
     )
     func end()
     func currentSession(for taskId: UUID) -> TimerSessionSnapshot?
-    /// Emite quando a Live Activity muda (ex.: pause/play pelo Dynamic Island).
     func sessionUpdates(for taskId: UUID) -> AsyncStream<TimerSessionSnapshot>
 }

@@ -46,4 +46,9 @@ struct PomorDeepLinkTests {
 
         #expect(PomorDeepLink.parse(url) == nil)
     }
+
+    @Test func destinations_areStableRawValues() {
+        #expect(PomorDeepLink.Destination.home.rawValue == "home")
+        #expect(PomorDeepLink.Destination.timer.rawValue == "timer")
+    }
 }
